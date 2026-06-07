@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQA Tech</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        body {
+            background-color: #0d1117;
+        }
+
+        
+    </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQA Tech - Автоматизация тестирования на Python</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f97316;
+            --secondary: #ef4444;
+            --accent: #fbbf24;
+            --light: #1c1917;
+            --dark: #e7e5e4;
+            --darker: #0c0a09;
+            --card-bg: #1c1917;
+            --border: #44403c;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--darker);
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        .navbar {
+            background-color: rgba(12, 10, 9, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+        }
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--primary) !important;
+            font-size: 1.8rem;
+        }
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark) !important;
+            transition: all 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.4);
+        }
+        .btn-light {
+            background: transparent;
+            border: 2px solid white;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        .btn-light:hover {
+            background: white;
+            color: var(--darker) !important;
+            transform: translateY(-3px);
+        }
+        .hero-section {
+            background: url('full_main.jpg') center/cover no-repeat;
+            color: white;
+            padding: 120px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(12, 10, 9, 0.85);
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #f97316, #ffffff, #f97316);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 8s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            color: #a8a29e;
+        }
+        .mentor-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            margin-bottom: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        #mentors .text-start {
+            padding-left: 0.75rem;
+        }
+        #mentors .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #mentors .mentor-role {
+            min-height: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        #mentors .mentor-exp {
+            min-height: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+        #mentors .mentor-companies {
+            min-height: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        #mentors .mentor-skills {
+            flex: 1;
+            align-self: stretch;
+        }
+        #mentors .mentor-skills li {
+            min-height: 1.75rem;
+        }
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: var(--card-bg);
+            transition: all 0.3s;
+            height: 100%;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .card-header {
+            background: linear-gradient(135deg, #451a03 0%, #1c1917 100%);
+            color: white;
+            font-weight: 700;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            padding: 20px;
+            min-height: 200px;
+        }
+        .price {
+            color: #fb923c;
+            font-weight: 800;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        #products .card-header {
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            gap: 15px;
+        }
+        #products .card-header h3 {
+            margin: 0;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.25;
+        }
+        .product-badge {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 0 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+            box-sizing: border-box;
+            white-space: nowrap;
+            line-height: 1;
+            margin-bottom: 0;
+            flex-shrink: 0;
+        }
+        .product-meta {
+            height: 135px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-bottom: 1.5rem;
+            flex-shrink: 0;
+        }
+        .product-meta .price {
+            margin: 0 0 0.75rem;
+            line-height: 1.3;
+        }
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: white;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        .bg-light-custom {
+            background-color: var(--light);
+        }
+        footer {
+            background: linear-gradient(180deg, #0c0a09 0%, #000000 100%);
+            color: #a8a29e;
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+        }
+        .social-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .social-icon {
+            color: #8b949e;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        .social-icon-telegram,
+        .social-icon-telegram:hover {
+            color: #229ed9;
+        }
+        .social-icon-setka {
+            line-height: 1;
+        }
+        .social-icon-setka img {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .stats-text {
+            font-weight: 600;
+            color: #8b949e;
+        }
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        .feature-check {
+            color: #22c55e;
+            margin-right: 10px;
+            font-size: 1.1rem;
+            width: 1.25rem;
+            display: inline-block;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .feature-cross {
+            color: #ef4444;
+            margin-right: 10px;
+            font-size: 1.1rem;
+            width: 1.25rem;
+            display: inline-block;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .feature-note {
+            color: #f97316;
+            margin-right: 10px;
+            font-size: 1.1rem;
+            width: 1.25rem;
+            display: inline-block;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .product-features li {
+            display: flex;
+            align-items: flex-start;
+        }
+        .product-features .feature-check,
+        .product-features .feature-cross,
+        .product-features .feature-note {
+            margin-top: 0.15rem;
+        }
+        .product-bonus {
+            max-width: 720px;
+            margin: 0.5rem auto 0;
+            padding: 18px 24px;
+            border-radius: 14px;
+            border: 1px solid rgba(249, 115, 22, 0.35);
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(239, 68, 68, 0.08) 100%);
+            color: #e7e5e4;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .product-bonus i {
+            color: var(--accent);
+            margin-right: 8px;
+        }
+        .product-bonus strong {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        .mentorship-intro {
+            max-width: 720px;
+            margin: 0 auto 0.75rem;
+            color: #c9d1d9;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .mentorship-price {
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .mentorship-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            height: 100%;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .mentorship-item:hover {
+            border-color: rgba(249, 115, 22, 0.5);
+            transform: translateY(-4px);
+        }
+        .mentorship-item i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .mentorship-item h5 {
+            color: white;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+        .mentorship-item p {
+            color: #c9d1d9;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .stepik-banner {
+            padding: 2rem 0;
+        }
+        .stepik-banner-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem 1.5rem;
+            text-align: center;
+        }
+        .stepik-banner p {
+            margin: 0;
+            color: #c9d1d9;
+            font-size: 1.1rem;
+        }
+        .stepik-banner a {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: color 0.3s;
+        }
+        .stepik-banner a:hover {
+            color: var(--accent);
+        }
+        #contact .contact-btn {
+            min-width: 310px;
+            width: 310px;
+        }
+        @media (max-width: 576px) {
+            #contact .contact-btn {
+                width: 100%;
+                min-width: 0;
+            }
+        }
+        .text-muted {
+            color: #8b949e !important;
+        }
+        .card-body {
+            background: var(--card-bg);
+        }
+        .card-text {
+            color: #c9d1d9;
+        }
+        .card-title {
+            color: white !important;
+        }
+        .fw-bold {
+            color: white !important;
+        }
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .mentor-img {
+                width: 150px;
+                height: 150px;
+            }
+            .card-body p, .card-body li {
+                font-size: 0.95rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .btn-primary, .btn-secondary {
+                padding: 10px 25px;
+                font-size: 0.95rem;
+            }
+            .nav-link {
+                font-size: 0.95rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            .mentor-img {
+                width: 120px;
+                height: 120px;
+            }
+            .card-body p, .card-body li {
+                font-size: 0.9rem;
+            }
+            .section-title {
+                font-size: 1.75rem;
+            }
+            .btn-primary, .btn-secondary {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            .nav-link {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-code me-2"></i>AQA Tech
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="background: var(--card-bg);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mentorship">Менторство</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mentors">Команда</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Написать нам</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="hero-section">
+        <div class="container text-center" style="position: relative; z-index: 1;">
+            <h1 class="hero-title">Автоматизация тестирования на Python</h1>
+            <p class="hero-subtitle">Стань востребованным специалистом с менторами из топовых IT-компаний</p>
+            <a href="#products" class="btn btn-light btn-lg" style="background: transparent; border: 2px solid white; color: white;" onmouseover="this.style.background='white'; this.style.color='#0c0a09';" onmouseout="this.style.background='transparent'; this.style.color='white';">Выбрать услугу <i class="fas fa-arrow-right ms-2"></i></a>
+            <div class="mt-5 floating">
+                <i class="fas fa-code fa-5x mb-3" style="opacity: 0.3;"></i>
+            </div>
+        </div>
+    </section>
+    <section class="py-5" id="about">
+        <div class="container">
+            <h2 class="text-center section-title">Почему выбирают нас</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-rocket feature-icon"></i>
+                            <h5 class="card-title">Фокус на собеседованиях</h5>
+                            <p class="card-text">Мок-интервью и разбор пробелов: помогаем понять текущий уровень и подготовиться к реальным встречам</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-users feature-icon"></i>
+                            <h5 class="card-title">Командный подход</h5>
+                            <p class="card-text">Опытный интервьюер на каждой встрече для максимально объективной и честной оценки</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-medal feature-icon"></i>
+                            <h5 class="card-title">Топовые эксперты</h5>
+                            <p class="card-text">Наши менторы работают в компаниях мечты: VK, Ozon, Яндекс, AliExpress и других крутых местах</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-4 col-6 mb-4">
+                        <div class="stats-number">50+</div>
+                        <div class="stats-text">клиентов</div>
+                    </div>
+                    <div class="col-md-4 col-6 mb-4">
+                        <div class="stats-number">2</div>
+                        <div class="stats-text">крутых ментора</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5 bg-light-custom" id="products">
+        <div class="container">
+            <h2 class="text-center section-title">Наши продукты</h2>
+            <div class="row justify-content-center align-items-stretch">
+                <div class="col-lg-5 col-md-6 mb-4 d-flex">
+                    <div class="card w-100">
+                        <div class="card-header text-center">
+                            <span class="product-badge">Быстро и доступно</span>
+                            <h3>Экспресс-скрининг</h3>
+                        </div>
+                        <div class="card-body text-center p-4 d-flex flex-column">
+                            <div class="product-meta">
+                                <div class="price"><br>2 000 руб.</div>
+                                <p class="text-muted mb-0 mt-3"><i class="fas fa-clock me-2"></i>30 минут</p>
+                            </div>
+                            <ul class="list-unstyled mb-4 text-start product-features">
+                                <li class="mb-3"><i class="fas fa-user feature-note"></i> <span class="card-text">Один опытный интервьюер</span></li>
+                                <li class="mb-3"><i class="fas fa-check feature-check"></i> <span class="card-text">Решение практических задач</span></li>
+                                <li class="mb-3"><i class="fas fa-check feature-check"></i> <span class="card-text">Краткие пояснения по ошибкам</span></li>
+                                <li class="mb-3"><i class="fas fa-check feature-check"></i> <span class="card-text">Определение грейда</span></li>
+                                <li class="mb-3"><i class="fas fa-times feature-cross"></i> <span class="card-text">Полная имитация реального собеседования</span></li>
+                                <li class="mb-3"><i class="fas fa-times feature-cross"></i> <span class="card-text">Разбор всех задач и ответов</span></li>
+                                <li class="mb-3"><i class="fas fa-times feature-cross"></i> <span class="card-text">Детальный разбор сильных и слабых сторон</span></li>
+                                <li class="mb-3"><i class="fas fa-times feature-cross"></i> <span class="card-text">Персональные рекомендации по развитию</span></li>
+                            </ul>
+                            <div class="mt-auto">
+                                <a href="#contact" class="btn btn-primary">Попробовать сейчас</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6 mb-4 d-flex">
+                    <div class="card w-100">
+                        <div class="card-header text-center">
+                            <span class="product-badge">Самый популярный</span>
+                            <h3>Пробное собеседование</h3>
+                        </div>
+                        <div class="card-body text-center p-4 d-flex flex-column">
+                            <div class="product-meta">
+                                <div class="price"><br>10 000 руб.</div>
+                                <p class="text-muted mb-0 mt-3"><i class="fas fa-clock me-2"></i>2 часа</p>
+                            </div>
+                            <ul class="list-unstyled mb-4 text-start product-features">
+                                <li class="mb-3"><i class="fas fa-user-friends feature-note"></i> <span class="card-text">Два опытных ревьюера</span></li>
+                                <li class="mb-3"><i class="fas fa-check feature-check"></i> <span class="card-text">Решение практических задач</span></li>
+                                <li class="mb-3"><i class="fas fa-check feature-check"></i> <span class="card-text">Краткие пояснения по ошибкам</span></li>
+                                <li class="mb-3"><i class="fas fa-check feature-check"></i> <span class="card-text">Определение грейда</span></li>
+                                <li class="mb-3"><i class="fas fa-check feature-check"></i> <span class="card-text">Полная имитация реального собеседования</span></li>
+                                <li class="mb-3"><i class="fas fa-check feature-check"></i> <span class="card-text">Разбор всех задач и ответов</span></li>
+                                <li class="mb-3"><i class="fas fa-check feature-check"></i> <span class="card-text">Детальный разбор сильных и слабых сторон</span></li>
+                                <li class="mb-3"><i class="fas fa-check feature-check"></i> <span class="card-text">Персональные рекомендации по развитию</span></li>
+                            </ul>
+                            <div class="mt-auto">
+                                <a href="#contact" class="btn btn-primary">Попробовать сейчас</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-bonus text-center mt-2">
+                <i class="fas fa-gift"></i>
+                <strong>Бонус:</strong> для успешно прошедших пробное собеседование — возможность рекомендации по реферальной программе в различные IT-компании
+            </div>
+        </div>
+    </section>
+    <section class="stepik-banner" id="courses">
+        <div class="container">
+            <div class="stepik-banner-inner">
+                <p><i class="fas fa-graduation-cap me-2" style="color: var(--primary);"></i>У нас постоянно появляются новые курсы на Stepik</p>
+                <a href="https://stepik.org/a/295314" target="_blank" rel="noopener noreferrer">Смотреть курсы <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+        </div>
+    </section>
+    <section class="py-5 bg-light-custom" id="mentorship">
+        <div class="container">
+            <h2 class="text-center section-title">Менторство</h2>
+            <p class="text-center mentorship-intro">
+                Занятия 1 на 1 с опытным ментором: составим ИПР и не бросим в беде — подтянем пробелы и доведём до результата.
+            </p>
+            <p class="text-center mentorship-price">Стоимость — индивидуально, под твои цели и формат</p>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="mentorship-item">
+                        <i class="fas fa-user-friends"></i>
+                        <h5>Занятия 1 на 1</h5>
+                        <p>Персональные сессии с опытным ментором под твои цели и темп</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="mentorship-item">
+                        <i class="fas fa-route"></i>
+                        <h5>Индивидуальный план развития</h5>
+                        <p>Составим ИПР: что качать, в каком порядке и как отслеживать прогресс</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="mentorship-item">
+                        <i class="fas fa-book-open"></i>
+                        <h5>Сложная теория простым языком</h5>
+                        <p>Разберём трудные темы доступно — без воды и заумных формулировок</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="mentorship-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h5>Переход на другой стек</h5>
+                        <p>Помощь с переходом на новый стек технологий без хаоса и потери мотивации</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="mentorship-item">
+                        <i class="fas fa-level-up-alt"></i>
+                        <h5>Переход на другой грейд</h5>
+                        <p>Подготовим к росту: от текущего уровня до следующего грейда</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="mentorship-item">
+                        <i class="fas fa-briefcase"></i>
+                        <h5>Карьерные консультации</h5>
+                        <p>Разбор резюме, стратегии поиска работы и подготовки к офферам</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#contact" class="btn btn-primary">Записаться на менторство</a>
+            </div>
+        </div>
+    </section>
+    <section class="py-5" id="mentors">
+        <div class="container">
+            <h2 class="text-center section-title">Команда</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-5 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center p-4">
+                            <img src="igav.jpg" class="mentor-img" alt="Иван Гавалиди">
+                            <h3 class="card-title">Иван Гавалиди</h3>
+                            <p class="text-muted mentor-role">SDET | Автоматизация тестирования</p>
+                            <p class="fw-bold mentor-exp">Опыт: 5+ лет в топовых компаниях</p>
+                            <p class="text-muted mentor-companies">VK, DELL Technologies, Yandex</p>
+                            <div class="text-start mentor-skills">
+                                <p class="fw-bold">Чем крут:</p>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="text-muted"><span class="emoji">🐍</span> UI автотесты на Python</li>
+                                    <li class="text-muted"><span class="emoji">🛠️</span>Разработка CI/CD пайплайнов</li>
+                                    <li class="text-muted"><span class="emoji">👨‍🏫</span> Обучение команд эффективному тестированию</li>
+                                    <li class="text-muted"><span class="emoji">🎓</span> Ментор в Яндекс.Практикум</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center p-4">
+                            <img src="pmard.jpg" class="mentor-img" alt="Павел Мардиросян">
+                            <h3 class="card-title">Павел Мардиросян</h3>
+                            <p class="text-muted mentor-role">QA Automation Lead | Автоматизация тестирования</p>
+                            <p class="fw-bold mentor-exp">Опыт: 5+ лет в лидерах рынка</p>
+                            <p class="text-muted mentor-companies">Ozon, AliExpress, Kaspersky Lab</p>
+                            <div class="text-start mentor-skills">
+                                <p class="fw-bold">Чем крут:</p>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="text-muted"><span class="emoji">🐍</span> Автоматизация backend на Python</li>
+                                    <li class="text-muted"><span class="emoji">🛠️</span> Создание тестовых фреймворков</li>
+                                    <li class="text-muted"><span class="emoji">🧩</span> Разбор сложных кейсов</li>
+                                    <li class="text-muted"><span class="emoji">🎓</span> Тьютор в Ozon Route 256</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5 bg-light-custom" id="contact">
+        <div class="container">
+            <h2 class="text-center section-title">Готовы начать?</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body p-5 text-center">
+                            <p class="lead mb-4 text-muted">Контакты для связи с нами</p>
+                            <div class="d-flex flex-wrap justify-content-center gap-3">
+                                <a href="https://t.me/aqa_tech_lead" class="btn btn-primary btn-lg contact-btn d-inline-flex align-items-center justify-content-center"><i class="fab fa-telegram me-2" style="font-size: 1.4em; vertical-align: middle;"></i>Написать в Telegram</a>
+                                <a href="mailto:aqa_tech@mail.ru?subject=Заявка на обучение&body=Здравствуйте! Хочу оставить заявку на обучение." class="btn btn-primary btn-lg contact-btn d-inline-flex align-items-center justify-content-center"><i class="fas fa-envelope me-2" style="font-size: 1.4em; vertical-align: middle;"></i>Отправить на Email</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 style="color: white;">AQA Tech</h5>
+                    <p>Крутые навыки и знания по автоматизации тестирования на Python от экспертов индустрии</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 style="color: white;">Контакты</h5>
+                    <p><i class="fas fa-envelope me-2"></i> aqa_tech@mail.ru</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 style="color: white;">Мы в соцсетях</h5>
+                    <div class="social-links">
+                        <a href="https://t.me/aqa_tech" class="social-icon social-icon-telegram" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://setka.ru/users/019e56a9-bc8f-7442-9e29-8810858c0bc2" class="social-icon social-icon-setka" aria-label="Сетка">
+                            <img src="https://play-lh.googleusercontent.com/2ePPhbsyvyiPgpGse9CLH6Eq69xnea3X0bz9ProvjOhhaV1OWcShtEpckM6PG0GHWA" alt="Сетка">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: var(--border);">
+            <div class="text-center">
+                <p class="mb-0">© 2026 AQA Tech. Крутимся и учим!</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
